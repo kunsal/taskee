@@ -7,11 +7,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use Illuminate\Support\Facades\Event;
 use App\Events\UserCreated;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserCreatedNotification;
 
-class UserTest extends TestCase
+class UserRegistrationTest extends TestCase
 {
     use RefreshDatabase;
 

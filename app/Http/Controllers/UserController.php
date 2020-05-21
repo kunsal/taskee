@@ -29,7 +29,7 @@ class UserController extends Controller
             [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password
+            'password' =>$request->password
             ]
         );
         event(new UserCreated($user));
