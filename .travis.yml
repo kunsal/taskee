@@ -2,4 +2,4 @@ language: php
 php:
   - 7.2
 script:
-  - php artisan test
+  - vendor/bin/phpunit
