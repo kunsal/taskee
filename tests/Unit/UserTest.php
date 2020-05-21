@@ -34,6 +34,18 @@ class UserTest extends TestCase
         $response->assertRedirect();
     }
 
+    public function testThatEmailIsRequiredAtRegistration()
+    {
+        $response = $this->post('/user/register', [
+            'name' => 'Ola',
+            'email' => '',
+            'password' => 'pword',
+            'password' => 'pword'
+        ]);
+        $response->assertSessionHasErrors('email');
+        $response->assertRedirect();
+    }
+
     // public function testThatNameLengthShouldBeMoreThanOne()
     // {
     //     $response = $this->post('/user/register'. [
