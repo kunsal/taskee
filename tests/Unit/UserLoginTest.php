@@ -55,6 +55,7 @@ class UserLoginTest extends TestCase
             'password' => 'passw'
         ]);
         $response->assertSessionHasErrors();
+        $response->assertRedirect();
     }
 
     public function testThatRegisteredUserCanLogin()
@@ -71,7 +72,7 @@ class UserLoginTest extends TestCase
         ]);
         $response->assertSessionHasNoErrors();
         $response->assertStatus(302);
-        $response->assertRedirect('/');
+        $response->assertRedirect();
     }
 
 }

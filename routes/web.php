@@ -20,5 +20,15 @@ Route::get('/', function () {
 Route::get('/user/register', 'UserController@showRegistrationPage');
 Route::post('/user/register', 'UserController@register');
 
-Route::get('user/login', 'UserLoginController@showLoginPage');
+Route::get('user/login', 'UserLoginController@showLoginPage')->name('login');
 Route::post('user/login', 'UserLoginController@login');
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('tasks', 'TaskController@index');
+    Route::get('tasks/create', 'TaskController@create');
+    Route::post('tasks/create', 'TaskController@store');
+    Route::get('tasks/edit/{task}', 'TaskController@edit');
+    Route::put('tasks/edit/{task}', 'TaskController@update');
+    Route::patch('tasks/status/{task}/{status}', 'TaskController@updateStatus');
+});
+
