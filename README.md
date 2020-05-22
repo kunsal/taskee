@@ -1,4 +1,4 @@
-<p align="center">
+<p>
 <a href="https://travis-ci.org/kunsal/taskee"><img src="https://travis-ci.com/kunsal/taskee.svg?branch=develop" alt="Build Status"></a>
 
 </p>
