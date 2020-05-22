@@ -1,6 +1,8 @@
 <p>
 <a href="https://travis-ci.org/kunsal/taskee"><img src="https://travis-ci.com/kunsal/taskee.svg?branch=develop" alt="Build Status"></a>
 
+<a href="https://codeclimate.com/github/kunsal/taskee/maintainability"><img src="https://api.codeclimate.com/v1/badges/1f172254332081aa094b/maintainability" /></a>
+
 </p>
 
 # Taskee
