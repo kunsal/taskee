@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserLoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
 
     public function showLoginPage()
     {
@@ -24,6 +28,13 @@ class UserLoginController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect('/');
         }
-        return redirect()->back()->withErrors('Invalid email or password');
+        return redirect()->back()->withErrors('Invalid email or password')->withInput($request->except('password'));
     }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('user/login');
+    }
+
 }

@@ -44,6 +44,7 @@ class UserLoginTest extends TestCase
 
     public function testThatUnregisteredUserCanNotLogin()
     {
+        $this->withoutExceptionHandling();
         User::create([
             'name' => 'Olakunle',
             'email' => 'kunsal@email.com',
@@ -55,6 +56,7 @@ class UserLoginTest extends TestCase
             'password' => 'passw'
         ]);
         $response->assertSessionHasErrors();
+        $response->assertSessionHasInput('email', 'kunsal@email.co');
         $response->assertRedirect();
     }
 
@@ -73,6 +75,12 @@ class UserLoginTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertStatus(302);
         $response->assertRedirect();
+    }
+
+    public function testThatUserCanLogout()
+    {
+        $this->get('logout')
+            ->assertRedirect('/user/login');
     }
 
 }

@@ -9,7 +9,7 @@ class TaskController
 {
     public function index()
     {
-        $tasks = Task::where('user_id', auth()->user()->id)->get();
+        $tasks = Task::where('user_id', auth()->user()->id)->with('user')->get();
         return view('tasks.index', ['tasks' => $tasks]);
     }
 

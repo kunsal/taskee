@@ -10,6 +10,11 @@ use App\Events\UserCreated;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function showRegistrationPage()
     {
         return view('user.register');
@@ -33,5 +38,6 @@ class UserController extends Controller
             ]
         );
         event(new UserCreated($user));
+        return redirect('user/login')->with('success', 'Account created successfully');
     }
 }

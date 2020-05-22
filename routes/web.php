@@ -17,11 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/user/register', 'UserController@showRegistrationPage');
 Route::post('/user/register', 'UserController@register');
 
 Route::get('user/login', 'UserLoginController@showLoginPage')->name('login');
 Route::post('user/login', 'UserLoginController@login');
+Route::get('logout', 'UserLoginController@logout');
+
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('tasks', 'TaskController@index');

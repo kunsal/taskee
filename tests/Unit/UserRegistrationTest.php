@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use App\Events\UserCreated;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserCreatedNotification;
+use Illuminate\Support\Facades\Auth;
 
 class UserRegistrationTest extends TestCase
 {
@@ -35,6 +36,7 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('name');
+        $response->assertSessionHasInput('email', 'kay@email.com');
         $response->assertRedirect();
     }
 
@@ -47,6 +49,7 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('email');
+        $response->assertSessionHasInput('name', 'Ola');
         $response->assertRedirect();
     }
 
@@ -59,6 +62,8 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('email');
+        $response->assertSessionHasInput('email', 'kunsal');
+        $response->assertSessionHasInput('name', 'Ola');
         $response->assertRedirect();
     }
 
@@ -77,6 +82,8 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('email');
+        $response->assertSessionHasInput('email', 'kunsal@email.com');
+        $response->assertSessionHasInput('name', 'Ola');
         $response->assertRedirect();
     }
 
@@ -89,6 +96,8 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('password');
+        $response->assertSessionHasInput('email', 'kunsal@email.com');
+        $response->assertSessionHasInput('name', 'Ola');
         $response->assertRedirect();
     }
 
@@ -101,6 +110,8 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => 'pword'
         ]);
         $response->assertSessionHasErrors('password');
+        $response->assertSessionHasInput('email', 'kunsal@email.com');
+        $response->assertSessionHasInput('name', 'Ola');
         $response->assertRedirect();
     }
 
@@ -117,6 +128,8 @@ class UserRegistrationTest extends TestCase
             'name' => 'Ola',
             'email' => 'kunsal@email.com',
         ]);
+        $response->assertSessionHas('success', 'Account created successfully');
+        $response->assertRedirect('user/login');
     }
 
     public function testThatUserCreatedEventIsFired()
@@ -146,15 +159,19 @@ class UserRegistrationTest extends TestCase
         Notification::assertSentTo($user, UserCreatedNotification::class);
     }
 
-    // public function testThatNameLengthShouldBeMoreThanOne()
-    // {
-    //     $response = $this->post('/user/register'. [
-    //         'name' => 'a'
-    //     ]);
-    //     $response->assertSessionHasErrors('name');
-    //     $response->assertStatus(302);
-    //     $response->assertRedirect();
-    // }
+    public function testThatLoggedInUserCanNotAccessRegistrationPage()
+    {
+        $user = User::create([
+            'name' => 'Ola',
+            'email' => 'kunsal@email.com',
+            'password' => 'pword',
+            'password_confirmation' => 'pword'
+        ]);
+        Auth::login($user);
+        $response = $this->get('/user/register');
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+    }
 
 
 }

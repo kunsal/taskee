@@ -18,8 +18,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('content');
-            $table->integer('user_id')
-                ->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->boolean('done')
                 ->default(false);
             $table->timestamp('due_date')

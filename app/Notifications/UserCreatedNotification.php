@@ -40,9 +40,8 @@ class UserCreatedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $user = $notifiable;
         return (new MailMessage())
-            ->to($user->email)
+            ->from('hello@taskee.io', 'Taskee')
             ->subject('Welcome to Taskee.')
             ->line('Thank you for using our application!');
     }
