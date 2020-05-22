@@ -32,7 +32,7 @@ Follow the following guide to deploy and use this application.
     - Run `docker-compose exec db bash`
     - Run $`mysql -u {your db user}` and provide your db password when prompted
     - Run $`CREATE DATABASE {your db name}`
-    - Run exit
+    - Run `exit`
 
 - Its time to run migration. So ssh into the app service
     - Run `docker-compose exec app bash`
