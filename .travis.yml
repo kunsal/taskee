@@ -23,7 +23,8 @@ before_script:
 
 script:
   - mkdir -p build/logs
+  - chmod 777 -R build
   - vendor/bin/phpunit
 
 after_success:
-  - travis_retry php vendor/bin/php-coveralls
+  - travis_retry vendor/bin/php-coveralls
