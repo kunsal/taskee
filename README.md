@@ -12,7 +12,7 @@ A smart todo list app where a user can add tasks, view and mark them as complete
 - User can register
 - User can login
 - User can add task
-- User can view list of task
+- User can view list of tasks
 - User can update task due date
 - User can mark task as completed or open
 
