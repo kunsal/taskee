@@ -5,7 +5,7 @@
 
 # Taskee
 
-A smart todo list API. With this, a user can add list of tasks and mark thm as complete.
+A smart todo list API. With this, a user can add, view tasks and mark them as complete.
 
 ## Documentation
 
