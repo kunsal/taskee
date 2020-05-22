@@ -7,6 +7,15 @@
 
 A smart todo list app where a user can add tasks, view and mark them as complete. Built with PHP/Laravel, tested with PHPUnit and shipped with Docker. 
 
+## Features
+
+- User can register
+- User can login
+- User can add task
+- User can view list of task
+- User can update task due date
+- User can mark task as completed or open
+
 ## Try it out
 
 Follow the following guide to deploy and use this application.
@@ -18,6 +27,8 @@ Follow the following guide to deploy and use this application.
 - Navigate to project root `cd taskee`
 
 - Run `docker-compose build` and wait for app to finish building
+
+- Start up the services `docker-compose up -d`
 
 - You need a database to run the application. Use these configurations in your `.env` file
     - DB_CONNECTION=mysql
@@ -38,7 +49,8 @@ Follow the following guide to deploy and use this application.
     - Run `docker-compose exec app bash`
     - Run `php artisan migrate`
     That's it. 
-- Start the services `docker-compose up -d`. Visit app in browser on {your-ip}:8088
+    
+- Visit app in browser on {your-ip}:8088
   
 
 ## License
