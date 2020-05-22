@@ -7,7 +7,6 @@
 
 A smart todo list app where a user can add tasks, view and mark them as complete.
 
-
 ## License
 
 Taskee is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
